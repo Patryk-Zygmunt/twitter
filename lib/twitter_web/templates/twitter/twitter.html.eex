@@ -1,0 +1,36 @@
+<div class="container">
+<p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+
+ <form action="/tweet/new" method="post" id="new-tweet">
+ <div class="form-group">
+ <div class="row"> 
+ <div class="col-8">
+  <input type="hidden" name="_csrf_token" value="<%=Plug.CSRFProtection.get_csrf_token()%>">
+   <textarea name="text" form="new-tweet"  class="form-control">nowy tweet ...</textarea> 
+     </div>
+   <div class="col-2">
+    <input class="btn btn-primary" type="submit">
+      </div>
+      </div>
+    </div>
+    </form>
+
+
+    <%= for tweet <- @tweets do %>
+  
+ <div class="card">
+    <h6 class="card-header bg-primary text-white"><%= (elem(tweet , 0)).name %></h6>
+  <div class="card-body"> 
+  <div class="row">
+  
+    <div class="col-9">
+      
+  <p  ><%= (elem(tweet , 1)).text %></p>   </div>
+   <div class="col-3 text-muted text-right">    <p ><%= (elem(tweet , 1)).date %></p>    </div>
+   </div>
+    </div>
+
+</div>
+  <% end %>
+</div>
+

@@ -1,0 +1,31 @@
+<div class="jumbotron">
+    <%= for user <- @foll do %>
+
+      <div class="col-6">
+     <div class="card">
+  <div class="card-body"> 
+  <div class="row">
+
+    <div class="col-3">
+      
+  <p  ><%= user.name %></p>   </div>
+   <div class="col-2 text-muted ">    <p ><%= user.age %></p>    
+        </div>
+         <div class=" col-3 offset-md-4 text-right">
+         <form action="/unfollow" method="post" id="follow">
+        <input type="hidden" name="_csrf_token" value="<%=Plug.CSRFProtection.get_csrf_token()%>">
+        <input type="hidden" name="follow_id" value="<%=user.id %>">
+       
+        <input class="btn btn-primary" type="submit" value="unfollow">
+      </form>
+      </div>
+   </div>
+    </div>
+           </div>
+</div>
+  <% end %>
+ 
+  
+  
+  
+</div>

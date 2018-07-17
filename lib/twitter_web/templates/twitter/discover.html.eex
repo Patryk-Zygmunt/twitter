@@ -1,0 +1,45 @@
+<div class="jumbotron"> 
+ <%= for user <- @foll do %>
+       <div class="col-6">
+     <div class="card">
+  <div class="card-body"> 
+  <div class="row">
+
+    <div class="col-3">
+      
+  <p  ><%= (elem(user , 1)).name %></p>   </div>
+   <div class="col-2 text-muted ">    <p ><%= (elem(user , 1)).age %></p>    
+        </div>
+         <div class=" col-3 offset-md-4 text-right">
+              <%= if !(elem(user , 0)) do %>
+    <form action="/follow" method="post" id="follow">
+     <input type="hidden" name="_csrf_token" value="<%=Plug.CSRFProtection.get_csrf_token()%>">
+     <input type="hidden" name="follow_id" value="<%=(elem(user , 1)).id %>">
+     <input class="btn btn-primary" type="submit" value="follow">
+    </form>
+   <% end %>
+   
+   <%= if (elem(user , 0)) do %>         
+      <form action="/unfollow" method="post" id="follow">
+        <input type="hidden" name="_csrf_token" value="<%=Plug.CSRFProtection.get_csrf_token()%>">
+        <input type="hidden" name="follow_id" value="<%=(elem(user , 1)).id %>">
+        <input class="btn btn-primary" type="submit" value="unfollow">
+      </form>
+  <% end %>    
+     
+      </div>
+   </div>
+    </div>
+           </div>
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+ <% end %>
+  
+</div>
